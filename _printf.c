@@ -30,6 +30,12 @@ int _printf(const char *format, ...)
 					j += _putchar(format[i + 1]);
 					i++;
 				}
+				else if (format[i + 1] == 'd' || format[i + 1] == 'i')
+				{
+					func_ptr = printf_decimal;
+					j += func_ptr(args);
+					i++;
+				}
 				else
 				{
 					func_ptr = get_function(&format[i + 1]);

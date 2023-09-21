@@ -1,5 +1,6 @@
 #include "main.h"
 
+int power(int base, int exp);
 /**
  * printf_decimal - prints a decimal number
  * @args: the argument (decimal)
@@ -9,34 +10,49 @@
 
 int printf_decimal(va_list args)
 {
-	int value = va_arg(args, int);
-	int length = 0;
-	int countn = 1;
-	int temp = value;
+	int printed = 0;
+	int num_digits = 0;
+	int digit;
+	int num = va_arg(args, int);
+	int temp = num;
 
-	if (value < 0)
+	if (num < 0)
 	{
-		temp = -temp;
+		_putchar('-');
+		printed++;
+		num = -num;
 	}
-	else
-	{
-		length += _putchar('-');
-	}
-	if (temp == 0)
-	{
-		length += _putchar('0');
-		return (length);
-	}
-	while (temp > 9)
+	while (temp > 0)
 	{
 		temp /= 10;
-		countn *= 10;
+		num_digits++;
 	}
-	while (countn > 0)
+	while (num_digits > 0)
 	{
-		length += _putchar((value / countn) + '0');
-		value %= countn;
-		countn /= 10;
+		digit = num / power(10, num_digits - 1);
+		_putchar('0' + digit);
+		printed++;
+		num %= power(10, num_digits - 1);
+		num_digits--;
 	}
-	return (length);
+	return (printed);
+}
+
+/**
+ * power - Helper function to calculate power
+ * @base: Base integer
+ * @exp: exponent
+ * Return: power
+ */
+
+int power(int base, int exp)
+{
+	int result = 1;
+	int i;
+
+	for (i = 0; i < exp; i++)
+	{
+		result *=base;
+	}
+	return (result);
 }
