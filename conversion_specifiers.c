@@ -16,7 +16,7 @@ int printf_char(va_list args)
 
 /**
  * printf_string - Prints a string
- * args: type of argument
+ * @args: type of argument
  * Return: String
  */
 
@@ -39,7 +39,7 @@ int printf_string(va_list args)
 
 /**
  * printf_percent - Prints the character '%'
- * args: type of argument
+ * @args: type of argument
  * Return: character '%'
  */
 
